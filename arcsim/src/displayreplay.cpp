@@ -40,7 +40,7 @@ using namespace std;
 static string inprefix, outprefix;
 static int frameskip;
 
-static bool running = false;
+static bool running = true;
 
 static void reload () {
     int fullframe = ::frame*::frameskip;
