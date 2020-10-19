@@ -321,7 +321,7 @@ void save_screenshot (const string &filename) {
         delete[] pixelsub;
     }
     flip_image(w,h, pixels);
-    save_png(filename.c_str(), w,h, pixels);
+    save_bmp(filename.c_str(), w,h, pixels);
     delete[] pixels;
 }
 #endif
