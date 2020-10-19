@@ -333,7 +333,7 @@ void flip_image (int w, int h, unsigned char *pixels) {
                 swap(pixels[(i+w*j)*3+c], pixels[(i+w*(h-1-j))*3+c]);
 }
 
-void save_png (const char *filename, int w, int h,
+void save_bmp (const char *filename, int w, int h,
                unsigned char *pixels, bool has_alpha) {
   FILE *f;
   unsigned char *img = NULL;
@@ -366,7 +366,6 @@ void save_png (const char *filename, int w, int h,
       fwrite(bmppad,1,(4-(w*3)%4)%4,f);
   }
 
-  free(img);
   fclose(f);
 }
 
