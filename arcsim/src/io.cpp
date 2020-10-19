@@ -293,7 +293,7 @@ void save_transformation (const Transformation &tr, const string &filename) {
 
 void flip_image (int w, int h, unsigned char *pixels);
 
-void save_png (const char *filename, int width, int height,
+void save_bmp (const char *filename, int width, int height,
                unsigned char *pixels, bool has_alpha = false);
 
 #ifndef NO_OPENGL
