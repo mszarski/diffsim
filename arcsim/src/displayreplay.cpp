@@ -71,7 +71,7 @@ static void idle () {
     fps.tick();
     if (!outprefix.empty()) {
         char filename[256];
-        snprintf(filename, 256, "%s/%04d.png", outprefix.c_str(), ::frame);
+        snprintf(filename, 256, "%s/%04d.bmp", outprefix.c_str(), ::frame);
         cout << filename << endl;
         save_screenshot(filename);
     }
