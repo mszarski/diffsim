@@ -117,7 +117,7 @@ void display_replay (const vector<string> &args) {
     }
     cout << "reply 1 " << endl;
     ::inprefix = args[0];
-    ::outprefix = ::inprefix //args.size()>1 ? args[1] : "";
+    ::outprefix = ::inprefix; //args.size()>1 ? args[1] : "";
     cout << "reply 2 " << endl;
     ::frameskip = 1;
     if (!::outprefix.empty())
