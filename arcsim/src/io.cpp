@@ -336,45 +336,6 @@ void flip_image (int w, int h, unsigned char *pixels) {
 
 void save_png (const char *filename, int width, int height,
                unsigned char *pixels, bool has_alpha) {
-    FILE* file = fopen(filename, "wb");
-    if (!file) {
-        printf("Couldn't open file %s for writing.\n", filename);
-        return;
-    }
-    png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL,
-                                                  NULL, NULL);
-    if (!png_ptr) {
-        printf("Couldn't create a PNG write structure.\n");
-        fclose(file);
-        return;
-    }
-    png_infop info_ptr = png_create_info_struct(png_ptr);
-    if (!info_ptr) {
-        printf("Couldn't create a PNG info structure.\n");
-        png_destroy_write_struct(&png_ptr, NULL);
-        fclose(file);
-        return;
-    }
-    if (setjmp(png_jmpbuf(png_ptr))) {
-        printf("Had a problem writing %s.\n", filename);
-        png_destroy_write_struct(&png_ptr, &info_ptr);
-        fclose(file);
-        return;
-    }
-    png_init_io(png_ptr, file);
-    png_set_IHDR(png_ptr, info_ptr, width, height, 8,
-                 has_alpha ? PNG_COLOR_TYPE_RGBA : PNG_COLOR_TYPE_RGB,
-                 PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT,
-                 PNG_FILTER_TYPE_DEFAULT);
-    int channels = has_alpha ? 4 : 3;
-    png_bytep* row_pointers = (png_bytep*) new unsigned char*[height];
-    for (int y = 0; y < height; y++)
-        row_pointers[y] = (png_bytep) &pixels[y*width*channels];
-    png_set_rows(png_ptr, info_ptr, row_pointers);
-    png_write_png(png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
-    delete[] row_pointers;
-    png_destroy_write_struct(&png_ptr, &info_ptr);
-    fclose(file);
 }
 
 void ensure_existing_directory (const std::string &path) {
