@@ -53,14 +53,18 @@ static void reload () {
     load_objs(sim.obstacle_meshes, stringf("%s/%04d_rig",inprefix.c_str(), fullframe));
 
     
-    // if (sim.cloth_meshes[0]->verts.empty()) {
-    //     if (::frame == 0)
-    //         exit(EXIT_FAILURE);
-    //     if (!outprefix.empty())
-    //         exit(EXIT_SUCCESS);
+    if (sim.cloth_meshes[0]->verts.empty()) {
+        if (::frame == 0)
+        {
+            exit(EXIT_FAILURE);
+        }
+        else
+        {
+            exit(EXIT_SUCCESS);
+        }
     //     ::frame = 0;
     //     reload();
-    // }
+    }
     // for (int o = 0; o < sim.obstacles.size(); o++)
     //     sim.obstacles[o].get_mesh(sim.time);
 }
