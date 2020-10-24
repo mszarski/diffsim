@@ -51,7 +51,7 @@ struct View {
     double lat, lon;
     double off0, off1;
     double scale;
-    View (): lat(0), lon(0), off0(0), off1(0), scale(0.5) {}
+    View (): lat(0), lon(0), off0(0), off1(0), scale(0.25) {}
 };
 
 enum Pane {MaterialPane, PlasticPane, WorldPane};
