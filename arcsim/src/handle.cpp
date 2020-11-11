@@ -49,7 +49,8 @@ vector<Constraint*> NodeHandle::get_constraints (Tensor t) {
         x0 = motion ? inverse(normalize(motion->pos(t))).apply(node->x) : node->x;
         activated = true;
     }
-    Tensor x = motion ? normalize(motion->pos(t)).apply(x0) : x0;
+    //Tensor x = motion ? normalize(motion->pos(t)).apply(x0) : x0;
+    Tensor x = motion ? normalize(motion->pos(t)).apply(x0) : node->x;
     vector<Constraint*> cons;
     add_position_constraints(node, x, s*::magic.handle_stiffness, cons);
     return cons;
