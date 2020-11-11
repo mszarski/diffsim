@@ -120,6 +120,9 @@ vector<Constraint*> get_constraints (Simulation &sim, bool include_proximity);
 void delete_constraints (const vector<Constraint*> &cons);
 void update_obstacles (Simulation &sim, bool update_positions=true);
 
+void update_constraints (Simulation &sim);
+
+
 void advance_step (Simulation &sim);
 
 void advance_frame (Simulation &sim) {
@@ -135,6 +138,7 @@ void advance_step (Simulation &sim) {
     sim.step++;
     // cout << "\t\tstep=" << sim.step << endl;
     update_obstacles(sim, false);
+    update_constraints(sim);
     vector<Constraint*> cons = get_constraints(sim, true);
     physics_step(sim, cons);
     //plasticity_step(sim);
@@ -225,6 +229,14 @@ void step_mesh (Mesh &mesh, Tensor dt) {
     for (int n = 0; n < mesh.nodes.size(); n++) {
         mesh.nodes[n]->x = mesh.nodes[n]->x + mesh.nodes[n]->v*dt;
         mesh.nodes[n]->xold = mesh.nodes[n]->x;
+    }
+}
+
+void update_constraints (Simulation &sim) {
+    for (int h = 0; h < sim.handles.size(); h++) {
+        Node *node = (NodeHandle*)sim.handles[h]->get_nodes()[0];
+        node->x = node->x + node->v*sim.step_time;
+        node->xold = node->x;
     }
 }
 
