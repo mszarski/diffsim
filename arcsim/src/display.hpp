@@ -48,4 +48,6 @@ void run_glut (const GlutCallbacks&);
 
 void redisplay ();
 
+void set_pane_view(int, double, double, double, double, double);
+
 #endif

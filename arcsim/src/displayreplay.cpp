@@ -33,6 +33,7 @@
 #include "opengl.hpp"
 #include <cstdio>
 #include <fstream>
+#include <string>
 using namespace std;
 
 #ifndef NO_OPENGL
@@ -112,7 +113,7 @@ static void special (int key, int x, int y) {
 }
 
 void display_replay (const vector<string> &args) {
-    if (args.size() < 1 || args.size() > 2) {
+    if (args.size() < 1) {
         cout << "Replays the results of a simulation." << endl;
         cout << "Arguments:" << endl;
         cout << "    <out-dir>: Directory containing simulation output files"
@@ -141,6 +142,9 @@ void display_replay (const vector<string> &args) {
     cb.idle = idle;
     cb.keyboard = keyboard;
     cb.special = special;
+    cout << args[1] << endl;
+    cout << stod(args[1]) << endl;
+    set_pane_view(2,0.0,stod(args[1]),0.0,0.0,0.25);
     run_glut(cb);
     cout << "reply 8 " << endl;
 }

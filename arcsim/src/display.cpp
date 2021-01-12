@@ -558,4 +558,14 @@ void redisplay () {
     }
 }
 
+void set_pane_view(int pane, double lat, double lon, double off0, double off1, double scale) {
+    View &view = views[pane];
+    view.lon = lon;
+    view.lat = lat;
+    view.lat = clamp(view.lat, -90., 90.);
+    view.off0 = off0;
+    view.off1 = off1;
+    view.scale = scale;
+}
+
 #endif // NO_OPENGL
